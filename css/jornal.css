@@ -1,0 +1,171 @@
+/* Jornal — if it walks like a duck and it talks like a duck, it's a duck
+   Folha de estilos única. Sem dependências além da Literata (Google Fonts). */
+
+:root {
+  --papel: #ffffff;
+  --tinta: #000000;
+  --cinza: #6b6b6b;
+  --linha: #d9d9d9;
+  --destaque: #ffe14d;   /* só para a chamada de trabalhos em curso */
+  --texto: 38rem;        /* medida de leitura */
+  --largo: 72rem;
+  --margem: clamp(1.25rem, 4vw, 3rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: "Literata", Georgia, "Times New Roman", serif;
+  font-size: 100%;
+  font-optical-sizing: auto;
+  color: var(--tinta);
+  background: var(--papel);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+a { color: inherit; text-underline-offset: 0.18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--tinta); outline-offset: 3px; }
+
+/* ---------- Cabeçalho ---------- */
+
+.topo {
+  max-width: var(--largo);
+  margin: 0 auto;
+  padding: clamp(1.75rem, 5vw, 3.25rem) var(--margem) 0;
+}
+
+.mastro { margin: 0 0 clamp(1.25rem, 3vw, 2rem); text-align: center; font-size: inherit; font-weight: inherit; }
+.mastro img { width: min(100%, 34rem); margin: 0 auto; }
+.topo--interior .mastro img { width: min(100%, 22rem); }
+
+/* Barra do menu: filete grosso em cima, fino em baixo, como no impresso */
+.menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.35rem 2.25rem;
+  margin: 0;
+  padding: 0.5rem 0 0.55rem;
+  list-style: none;
+  border-top: 2px solid var(--tinta);
+  border-bottom: 1px solid var(--tinta);
+  font-size: 0.9375rem;
+}
+.menu a { text-decoration: none; }
+.menu a:hover { text-decoration: underline; }
+.menu a[aria-current="page"] { font-weight: 600; }
+
+/* ---------- Conteúdo corrido ---------- */
+
+main { display: block; }
+
+.corpo {
+  max-width: var(--largo);
+  margin: 0 auto;
+  padding: clamp(2rem, 4vw, 3rem) var(--margem) 4rem;
+}
+
+.corpo > * { max-width: var(--texto); }
+
+.corpo h1 {
+  font-weight: 300;
+  font-size: clamp(2rem, 4.5vw, 3.25rem);
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  margin: 0 0 1.75rem;
+}
+
+.corpo h2 {
+  font-weight: 600;
+  font-size: 1.0625rem;
+  margin: 2.5rem 0 0.5rem;
+}
+
+.corpo p { margin: 0 0 1em; }
+
+.creditos { margin-top: 2.5rem; }
+.creditos p { margin: 0 0 0.35em; }
+
+/* Chamada em curso */
+.chamada {
+  background: var(--destaque);
+  padding: 1.25rem 1.5rem 1rem;
+  margin: 2rem 0;
+}
+.chamada h2 { margin-top: 0; }
+.chamada dl { margin: 0; display: grid; grid-template-columns: max-content 1fr; gap: 0.25rem 1.25rem; }
+.chamada dt { font-variant-numeric: tabular-nums; }
+.chamada dd { margin: 0; }
+
+/* ---------- Números (arquivo) ---------- */
+
+.numeros {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  max-width: none !important;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 17rem), 1fr));
+  gap: 2.75rem clamp(1.25rem, 3vw, 2.25rem);
+}
+
+.numero figure { margin: 0; }
+
+.numero .capa {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.numero .capa img { width: 100%; height: 100%; object-fit: contain; object-position: center bottom; }
+
+.numero figcaption { margin-top: 0.75rem; line-height: 1.4; }
+.numero .titulo { font-weight: 600; display: block; }
+.numero .tema { display: block; }
+.numero .pdf { display: inline-block; margin-top: 0.4rem; }
+.numero .peso { color: var(--cinza); }
+
+/* ---------- Formulário ---------- */
+
+.formulario {
+  max-width: 44rem !important;
+  border: 1px solid var(--linha);
+}
+.formulario iframe { display: block; width: 100%; height: 620px; border: 0; }
+@media (max-width: 40rem) { .formulario iframe { height: 820px; } }
+
+/* ---------- Rodapé ---------- */
+
+.rodape {
+  border-top: 1px solid var(--linha);
+  margin-top: 2rem;
+}
+.rodape-dentro {
+  max-width: var(--largo);
+  margin: 0 auto;
+  padding: 2rem var(--margem) 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+.rodape p { margin: 0 0 0.6em; max-width: 40rem; }
+.rodape .nota { color: var(--cinza); }
+.logos { display: flex; align-items: flex-end; gap: 1.75rem; flex-wrap: wrap; }
+.logos img { height: 56px; width: auto; max-width: 12rem; object-fit: contain; }
+.logos .fct { height: 64px; }
+
+
+@media (max-width: 30rem) {
+  .chamada dl { grid-template-columns: 1fr; gap: 0; }
+  .chamada dd { margin-bottom: 0.6rem; }
+}
