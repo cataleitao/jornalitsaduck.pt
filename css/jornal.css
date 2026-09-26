@@ -139,8 +139,8 @@ main { display: block; }
   max-width: 44rem !important;
   border: 1px solid var(--linha);
 }
-.formulario iframe { display: block; width: 100%; height: 620px; border: 0; }
-@media (max-width: 40rem) { .formulario iframe { height: 820px; } }
+.formulario iframe { display: block; width: 100%; height: 340px; border: 0; }
+@media (max-width: 40rem) { .formulario iframe { height: 420px; } }
 
 /* ---------- Rodapé ---------- */
 
